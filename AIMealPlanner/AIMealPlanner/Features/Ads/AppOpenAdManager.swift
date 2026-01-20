@@ -32,6 +32,28 @@ final class AppOpenAdManager: NSObject, ObservableObject, FullScreenContentDeleg
             
             self?.appOpenAd = ad
             self?.appOpenAd?.fullScreenContentDelegate = self
+            
+            self?.appOpenAd?.paidEventHandler = { adValue in
+                let price = adValue.value.doubleValue / 1_000_000.0
+                let currency = adValue.currencyCode
+                let precisionStr: String
+                
+                switch adValue.precision {
+                case .unknown:
+                    precisionStr = "unknown"
+                case .estimated:
+                    precisionStr = "estimated"
+                case .publisherProvided:
+                    precisionStr = "publisherProvided"
+                case .precise:
+                    precisionStr = "precise"
+                @unknown default:
+                    precisionStr = "unknown-default"
+                }
+                
+                Logger.log(.info, "Interstitial → paid impression: \(String(format: "%.4f", price)) \(currency) (precision: \(precisionStr))")
+            }
+            
             Logger.log(.info, "App Open loaded successfully")
         }
     }
@@ -69,6 +91,14 @@ final class AppOpenAdManager: NSObject, ObservableObject, FullScreenContentDeleg
         Logger.log(.error, "Failed to present app open: \(error.localizedDescription)")
         appOpenAd = nil
         load()
+    }
+    
+    func adDidRecordImpression(_ ad: any FullScreenPresentingAd) {
+        Logger.log(.info, "AppOpen → impression засчитан")
+    }
+    
+    func adDidRecordClick(_ ad: any FullScreenPresentingAd) {
+        Logger.log(.info, "AppOpen → клик засчитан")
     }
     
 }

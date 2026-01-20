@@ -32,10 +32,27 @@ struct BannerAdView: UIViewRepresentable {
     
     final class Coordinator: NSObject, BannerViewDelegate {
         func bannerViewDidReceiveAd(_ bannerView: BannerView) {
-            Logger.log(.info, "Banner Loaded")
+            Logger.log(.info, "Banner → успешно загружен (adUnit: \(bannerView.adUnitID ?? "unknown"))")
         }
+        
         func bannerView(_ bannerView: BannerView, didFailToReceiveAdWithError error: any Error) {
-            Logger.log(.error, "Banner Failed with error: \(error.localizedDescription)")
+            Logger.log(.error, "Banner → ошибка загрузки: \(error.localizedDescription) (code: \((error as NSError).code))")
+        }
+        
+        func bannerViewWillPresentScreen(_ bannerView: BannerView) {
+            Logger.log(.info, "Banner → будет показан клик (откроется overlay)")
+        }
+        
+        func bannerViewWillDismissScreen(_ bannerView: BannerView) {
+            Logger.log(.info, "Banner → overlay будет закрыт")
+        }
+        
+        func bannerViewDidDismissScreen(_ bannerView: BannerView) {
+            Logger.log(.info, "Banner → overlay закрыт")
+        }
+        
+        func bannerViewDidRecordImpression(_ bannerView: BannerView) {
+            Logger.log(.info, "Banner → impression засчитан")
         }
     }
     

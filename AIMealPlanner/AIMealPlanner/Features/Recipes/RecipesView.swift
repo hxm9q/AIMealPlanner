@@ -58,6 +58,8 @@ struct RecipesView: View {
                     AnalyticsParameterScreenName: "Recipes" as NSObject,
                     AnalyticsParameterScreenClass: "RecipesView" as NSObject
                 ])
+                
+                AdService.shared.loadMoreNativeIfNeeded()
             }
         }
     }
@@ -83,17 +85,30 @@ struct RecipesView: View {
                     .multilineTextAlignment(.center)
                     .foregroundStyle(.secondary)
             } else {
-                List(recipes) { recipe in
-                    RecipeCard(recipe: recipe)
-                        .onTapGesture {
-                            Task {
-                                if recipe.extendedIngredients == nil {
-                                    await viewModel.loadRecipeDetails(id: recipe.id)
-                                } else {
-                                    viewModel.selectedRecipe = recipe
+                List {
+                    ForEach(Array(recipes.enumerated()), id: \.element.id) { index, recipe in
+                        if index > 0 && index % 3 == 0,
+                           AdService.shared.hasReadyNativeAd,
+                           let ad = AdService.shared.popNativeAd() {
+                            
+                            SimpleNativeAdView(nativeAd: ad)
+                                .frame(height: 220)
+                                .padding(.vertical, 8)
+                                .listRowInsets(EdgeInsets())
+                                .listRowSeparator(.hidden)
+                        }
+                        
+                        RecipeCard(recipe: recipe)
+                            .onTapGesture {
+                                Task {
+                                    if recipe.extendedIngredients == nil {
+                                        await viewModel.loadRecipeDetails(id: recipe.id)
+                                    } else {
+                                        viewModel.selectedRecipe = recipe
+                                    }
                                 }
                             }
-                        }
+                    }
                 }
                 .listStyle(.plain)
             }

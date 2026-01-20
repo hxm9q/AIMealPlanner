@@ -47,8 +47,13 @@ final class NativeAdManager: NSObject, ObservableObject, NativeAdLoaderDelegate 
     }
     
     func popAd() -> NativeAd? {
-        guard !loadedNativeAds.isEmpty else { return nil }
-        return loadedNativeAds.removeFirst()
+        guard !loadedNativeAds.isEmpty else {
+            Logger.log(.info, "Native → попытка pop, но кэш пуст")
+            return nil
+        }
+        let ad = loadedNativeAds.removeFirst()
+        Logger.log(.info, "Native → выдан из кэша (осталось: \(loadedNativeAds.count))")
+        return ad
     }
     
 }

@@ -7,11 +7,6 @@ struct HomeView: View {
     @State private var showingPlanDetail = false
     
     @State private var availableWidth: CGFloat = 320
-    
-    @StateObject private var interstitial = InterstitalAdManager()
-    @StateObject private var rewarded = RewardedAdManager()
-    @StateObject private var rewardedinterstitial = RewardedInterstitialAdManager()
-    @StateObject private var appOpen = AppOpenAdManager()
     @StateObject private var native = NativeAdManager()
     
     var body: some View {
@@ -32,22 +27,6 @@ struct HomeView: View {
                     }
                     
                     Spacer(minLength: 12)
-                    
-                    Button("Show Interstitial") {
-                        interstitial.present()
-                    }
-                    
-                    Button("Show Rewarded") {
-                        rewarded.present {}
-                    }
-                    
-                    Button("Show Rewarded Interstitial") {
-                        rewardedinterstitial.present {}
-                    }
-                    
-                    Button("Show App Open") {
-                        appOpen.present()
-                    }
                     
                     if let ad = native.loadedNativeAds.first {
                         SimpleNativeAdView(nativeAd: ad)

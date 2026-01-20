@@ -11,7 +11,20 @@ final class PlannerViewModel: BaseViewModel<Void> {
     
     private let service = GroqService()
     
+    var canGenerate: Bool {
+        GenerationLimitService.shared.hasAvailable
+    }
+    
+    var remainingGenerations: Int {
+        GenerationLimitService.shared.availableGenerations
+    }
+    
     func generatePlan(profile: UserProfile) async {
+        guard GenerationLimitService.shared.hasAvailable else {
+            errorMessage = "Достигнут дневной лимит генераций. Получите дополнительные за просмотр рекламы."
+            return
+        }
+        
         isGenerating = true
         errorMessage = nil
         generatedPlan = nil
@@ -62,6 +75,8 @@ final class PlannerViewModel: BaseViewModel<Void> {
                 UserDefaults.standard.set(true, forKey: "hasTodayPlan")
                 Logger.log(.info, "Сегодняшний план сохранён")
             }
+            
+            GenerationLimitService.shared.consumeOne()
             
             generatedPlan = cleanedPlan.trimmingCharacters(in: .whitespacesAndNewlines)
             Logger.log(.info, "План сгенерирован, длина: \(response.count)")

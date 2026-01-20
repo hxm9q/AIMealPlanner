@@ -1,7 +1,7 @@
 import Foundation
 
 enum Secrets: String {
-    case groq = "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"
+    case groq = "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"
     case spoonacular = "838403198b7742a890d839cedc7f7bcc"
     case yandex_metrica = "0e752b1a-c91b-445c-8d7d-040409597441"
     case apps_flyer_key = "GAgckFyN4yETigBtP4qtRG"

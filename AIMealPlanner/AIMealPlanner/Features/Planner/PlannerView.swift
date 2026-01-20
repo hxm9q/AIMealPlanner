@@ -1,5 +1,6 @@
 import SwiftUI
 import FirebaseAnalytics
+import Combine
 
 struct PlannerView: View {
     
@@ -30,6 +31,16 @@ struct PlannerView: View {
                             .font(.headline)
                     }
                     
+                    HStack {
+                        Image(systemName: "sparkles.rectangle")
+                            .foregroundStyle(.orange)
+                        Text("Осталось генераций сегодня: \(viewModel.remainingGenerations)")
+                            .font(.subheadline)
+                            .foregroundStyle(.orange)
+                    }
+                    .padding(.horizontal)
+                    .padding(.vertical, 4)
+                    
                     if viewModel.isGenerating {
                         ProgressView("Генерирую план...")
                             .padding()
@@ -54,6 +65,8 @@ struct PlannerView: View {
                                     diet: viewModel.diet
                                 )
                                 showingSaveAlert = true
+                                
+                                AdService.shared.presentInterstitial()
                             } label: {
                                 Label("Сохранить", systemImage: "square.and.arrow.down.fill")
                                     .font(.subheadline.bold())
@@ -76,20 +89,63 @@ struct PlannerView: View {
                             .multilineTextAlignment(.center)
                     }
                     
-                    Button("Сгенерировать план") {
-                        AnalyticsService.shared.logMealPlanGenerateRequested(
-                            daysCount: viewModel.daysCount,
-                            diet: viewModel.diet,
-                            profile: homeViewModel.userProfile
-                        )
-                        
-                        Task {
-                            await viewModel.generatePlan(profile: homeViewModel.userProfile)
+                    if viewModel.generatedPlan != nil {
+                        Button("Расширенный план (+3 дня) за просмотр") {
+                            AdService.shared.presentRewarded {
+                                viewModel.daysCount += 3
+                                Task { await viewModel.generatePlan(profile: homeViewModel.userProfile) }
+                            }
                         }
+                        .buttonStyle(.bordered)
+                        .controlSize(.regular)
                     }
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.large)
-                    .disabled(viewModel.isGenerating)
+                    
+                    if viewModel.canGenerate {
+                        Button("Сгенерировать план (\(viewModel.remainingGenerations) осталось)") {
+                            AnalyticsService.shared.logMealPlanGenerateRequested(
+                                daysCount: viewModel.daysCount,
+                                diet: viewModel.diet,
+                                profile: homeViewModel.userProfile
+                            )
+                            
+                            Task {
+                                await viewModel.generatePlan(profile: homeViewModel.userProfile)
+                            }
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .controlSize(.large)
+                    } else {
+                        VStack(spacing: 16) {
+                            Text("Дневной лимит генераций исчерпан")
+                                .font(.headline)
+                                .foregroundStyle(.orange)
+                            
+                            Text("Получите +2 дополнительные генерации")
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
+                            
+                            Button {
+                                AdService.shared.presentRewarded {
+                                    GenerationLimitService.shared.grantReward()
+                                    viewModel.objectWillChange.send()
+                                }
+                            } label: {
+                                HStack {
+                                    Image(systemName: "play.rectangle.fill")
+                                    Text("Получить +2 за просмотр (15 сек)")
+                                }
+                                .font(.headline)
+                                .foregroundStyle(.white)
+                                .padding(.horizontal, 24)
+                                .padding(.vertical, 12)
+                                .background(Color.blue)
+                                .clipShape(Capsule())
+                            }
+                        }
+                        .padding()
+                        .background(Color(.systemGray6))
+                        .clipShape(RoundedRectangle(cornerRadius: 16))
+                    }
                 }
                 .padding()
             }
