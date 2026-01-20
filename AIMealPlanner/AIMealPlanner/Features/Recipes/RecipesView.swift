@@ -1,4 +1,5 @@
 import SwiftUI
+import FirebaseAnalytics
 
 struct RecipesView: View {
     
@@ -33,6 +34,13 @@ struct RecipesView: View {
                     .padding(.horizontal)
                 
                 Button("Найти рецепты") {
+                    AnalyticsService.shared.logRecipesSearchRequested(
+                        searchText: viewModel.searchText,
+                        diet: viewModel.selectedDiet,
+                        cuisine: viewModel.selectedCuisine,
+                        maxCalories: viewModel.maxCalories
+                    )
+                    
                     Task { await viewModel.search() }
                 }
                 .buttonStyle(.borderedProminent)
@@ -44,6 +52,12 @@ struct RecipesView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(item: $viewModel.selectedRecipe) { recipe in
                 RecipeDetailView(recipe: recipe)
+            }
+            .onAppear {
+                Analytics.logEvent(AnalyticsEventScreenView, parameters: [
+                    AnalyticsParameterScreenName: "Recipes" as NSObject,
+                    AnalyticsParameterScreenClass: "RecipesView" as NSObject
+                ])
             }
         }
     }

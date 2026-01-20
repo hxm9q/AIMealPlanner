@@ -2,7 +2,7 @@ import Foundation
 
 final class GroqService {
     
-    private let apiKey: String = "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"
+    private let apiKey = Secrets.groq.rawValue
     
     private let baseURL = "https://api.groq.com/openai/v1/chat/completions"
     

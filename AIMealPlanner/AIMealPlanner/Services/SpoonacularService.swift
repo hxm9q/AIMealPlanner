@@ -2,7 +2,7 @@ import Foundation
 
 final class SpoonacularService {
     
-    private let apiKey = "838403198b7742a890d839cedc7f7bcc"
+    private let apiKey = Secrets.spoonacular.rawValue
     private let baseURL = "https://api.spoonacular.com/recipes"
     
     init() {

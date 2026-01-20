@@ -25,6 +25,14 @@ final class RecipesViewModel: BaseViewModel<[Recipe]> {
                 maxCalories: maxCalories
             )
             viewState = .loaded(recipes)
+            
+            AnalyticsService.shared.logRecipesSearchSuccess(
+                recipesCount: recipes.count,
+                searchText: searchText,
+                diet: selectedDiet,
+                cuisine: selectedCuisine,
+                maxCalories: maxCalories
+            )
         } catch {
             viewState = .error(AppError(from: error))
             Logger.log(.error, "Ошибка поиска: \(error)")

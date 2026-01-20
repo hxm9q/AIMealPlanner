@@ -7,17 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DB0FA8D02F17C12D00C5E0FB /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = DB0FA8CF2F17C12D00C5E0FB /* FirebaseAuth */; };
-		DB0FA8D22F17C12D00C5E0FB /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = DB0FA8D12F17C12D00C5E0FB /* FirebaseFirestore */; };
+		DB5092FD2F1E4D7D00832D5C /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = DB5092FC2F1E4D7D00832D5C /* FirebaseAnalytics */; };
+		DB5092FF2F1E4D7D00832D5C /* FirebaseAnalyticsCore in Frameworks */ = {isa = PBXBuildFile; productRef = DB5092FE2F1E4D7D00832D5C /* FirebaseAnalyticsCore */; };
+		DB5093012F1E4D7D00832D5C /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = DB5093002F1E4D7D00832D5C /* FirebaseAuth */; };
+		DB5093032F1E4D7D00832D5C /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = DB5093022F1E4D7D00832D5C /* FirebaseCore */; };
+		DB50930C2F1E5C0F00832D5C /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = DB50930B2F1E5C0F00832D5C /* GoogleMobileAds */; };
+		DB5D228F2F1E24F500267991 /* AppMetricaCore in Frameworks */ = {isa = PBXBuildFile; productRef = DB5D228E2F1E24F500267991 /* AppMetricaCore */; };
+		DB5D22912F1E24F500267991 /* AppMetricaCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = DB5D22902F1E24F500267991 /* AppMetricaCrashes */; };
+		DB5D22972F1E2BA200267991 /* AppsFlyerLib-Static in Frameworks */ = {isa = PBXBuildFile; productRef = DB5D22962F1E2BA200267991 /* AppsFlyerLib-Static */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DB0FA7ED2F17BD5400C5E0FB /* AIMealPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AIMealPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		DB5092FA2F1E329400832D5C /* Exceptions for "AIMealPlanner" folder in "AIMealPlanner" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = DB0FA7EC2F17BD5400C5E0FB /* AIMealPlanner */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		DB0FA7EF2F17BD5400C5E0FB /* AIMealPlanner */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DB5092FA2F1E329400832D5C /* Exceptions for "AIMealPlanner" folder in "AIMealPlanner" target */,
+			);
 			path = AIMealPlanner;
 			sourceTree = "<group>";
 		};
@@ -28,8 +47,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB0FA8D02F17C12D00C5E0FB /* FirebaseAuth in Frameworks */,
-				DB0FA8D22F17C12D00C5E0FB /* FirebaseFirestore in Frameworks */,
+				DB5D22912F1E24F500267991 /* AppMetricaCrashes in Frameworks */,
+				DB5093012F1E4D7D00832D5C /* FirebaseAuth in Frameworks */,
+				DB5D22972F1E2BA200267991 /* AppsFlyerLib-Static in Frameworks */,
+				DB5092FF2F1E4D7D00832D5C /* FirebaseAnalyticsCore in Frameworks */,
+				DB50930C2F1E5C0F00832D5C /* GoogleMobileAds in Frameworks */,
+				DB5093032F1E4D7D00832D5C /* FirebaseCore in Frameworks */,
+				DB5092FD2F1E4D7D00832D5C /* FirebaseAnalytics in Frameworks */,
+				DB5D228F2F1E24F500267991 /* AppMetricaCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,8 +97,14 @@
 			);
 			name = AIMealPlanner;
 			packageProductDependencies = (
-				DB0FA8CF2F17C12D00C5E0FB /* FirebaseAuth */,
-				DB0FA8D12F17C12D00C5E0FB /* FirebaseFirestore */,
+				DB5D228E2F1E24F500267991 /* AppMetricaCore */,
+				DB5D22902F1E24F500267991 /* AppMetricaCrashes */,
+				DB5D22962F1E2BA200267991 /* AppsFlyerLib-Static */,
+				DB5092FC2F1E4D7D00832D5C /* FirebaseAnalytics */,
+				DB5092FE2F1E4D7D00832D5C /* FirebaseAnalyticsCore */,
+				DB5093002F1E4D7D00832D5C /* FirebaseAuth */,
+				DB5093022F1E4D7D00832D5C /* FirebaseCore */,
+				DB50930B2F1E5C0F00832D5C /* GoogleMobileAds */,
 			);
 			productName = AIMealPlanner;
 			productReference = DB0FA7ED2F17BD5400C5E0FB /* AIMealPlanner.app */;
@@ -104,7 +135,10 @@
 			mainGroup = DB0FA7E42F17BD5400C5E0FB;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				DB0FA8CE2F17C12D00C5E0FB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				DB5D228D2F1E24F500267991 /* XCRemoteSwiftPackageReference "appmetrica-sdk-ios" */,
+				DB5D22952F1E2BA200267991 /* XCRemoteSwiftPackageReference "AppsFlyerFramework-Static" */,
+				DB5092FB2F1E4D7D00832D5C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				DB50930A2F1E5C0F00832D5C /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DB0FA7EE2F17BD5400C5E0FB /* Products */;
@@ -268,6 +302,7 @@
 				DEVELOPMENT_TEAM = 96X777WFT2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/AIMealPlanner/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -280,6 +315,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_BUNDLE_IDENTIFIER = hxm9q.AIMealPlanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -306,6 +342,7 @@
 				DEVELOPMENT_TEAM = 96X777WFT2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/AIMealPlanner/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -318,6 +355,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_BUNDLE_IDENTIFIER = hxm9q.AIMealPlanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -358,7 +396,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		DB0FA8CE2F17C12D00C5E0FB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		DB5092FB2F1E4D7D00832D5C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -366,18 +404,72 @@
 				minimumVersion = 12.8.0;
 			};
 		};
+		DB50930A2F1E5C0F00832D5C /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.14.0;
+			};
+		};
+		DB5D228D2F1E24F500267991 /* XCRemoteSwiftPackageReference "appmetrica-sdk-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/appmetrica/appmetrica-sdk-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.16.0;
+			};
+		};
+		DB5D22952F1E2BA200267991 /* XCRemoteSwiftPackageReference "AppsFlyerFramework-Static" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppsFlyerSDK/AppsFlyerFramework-Static";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.17.8;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		DB0FA8CF2F17C12D00C5E0FB /* FirebaseAuth */ = {
+		DB5092FC2F1E4D7D00832D5C /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DB0FA8CE2F17C12D00C5E0FB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = DB5092FB2F1E4D7D00832D5C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		DB5092FE2F1E4D7D00832D5C /* FirebaseAnalyticsCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB5092FB2F1E4D7D00832D5C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsCore;
+		};
+		DB5093002F1E4D7D00832D5C /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB5092FB2F1E4D7D00832D5C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
-		DB0FA8D12F17C12D00C5E0FB /* FirebaseFirestore */ = {
+		DB5093022F1E4D7D00832D5C /* FirebaseCore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DB0FA8CE2F17C12D00C5E0FB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestore;
+			package = DB5092FB2F1E4D7D00832D5C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		DB50930B2F1E5C0F00832D5C /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB50930A2F1E5C0F00832D5C /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+		DB5D228E2F1E24F500267991 /* AppMetricaCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB5D228D2F1E24F500267991 /* XCRemoteSwiftPackageReference "appmetrica-sdk-ios" */;
+			productName = AppMetricaCore;
+		};
+		DB5D22902F1E24F500267991 /* AppMetricaCrashes */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB5D228D2F1E24F500267991 /* XCRemoteSwiftPackageReference "appmetrica-sdk-ios" */;
+			productName = AppMetricaCrashes;
+		};
+		DB5D22962F1E2BA200267991 /* AppsFlyerLib-Static */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB5D22952F1E2BA200267991 /* XCRemoteSwiftPackageReference "AppsFlyerFramework-Static" */;
+			productName = "AppsFlyerLib-Static";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

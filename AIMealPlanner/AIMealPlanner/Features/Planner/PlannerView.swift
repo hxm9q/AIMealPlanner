@@ -1,4 +1,5 @@
 import SwiftUI
+import FirebaseAnalytics
 
 struct PlannerView: View {
     
@@ -40,6 +41,13 @@ struct PlannerView: View {
                             Spacer()
                             
                             Button {
+                                AnalyticsService.shared.logMealPlanSaved(
+                                    daysCount: viewModel.daysCount,
+                                    diet: viewModel.diet,
+                                    planLengthChars: plan.count,
+                                    hasTodayPlan: UserDefaults.standard.bool(forKey: "hasTodayPlan")
+                                )
+                                
                                 historyViewModel.savePlan(
                                     content: plan,
                                     daysCount: viewModel.daysCount,
@@ -69,6 +77,12 @@ struct PlannerView: View {
                     }
                     
                     Button("Сгенерировать план") {
+                        AnalyticsService.shared.logMealPlanGenerateRequested(
+                            daysCount: viewModel.daysCount,
+                            diet: viewModel.diet,
+                            profile: homeViewModel.userProfile
+                        )
+                        
                         Task {
                             await viewModel.generatePlan(profile: homeViewModel.userProfile)
                         }
@@ -85,6 +99,12 @@ struct PlannerView: View {
                 Button("OK", role: .cancel) { }
             } message: {
                 Text("План добавлен в историю")
+            }
+            .onAppear {
+                Analytics.logEvent(AnalyticsEventScreenView, parameters: [
+                    AnalyticsParameterScreenName: "Planner" as NSObject,
+                    AnalyticsParameterScreenClass: "PlannerView" as NSObject
+                ])
             }
         }
     }

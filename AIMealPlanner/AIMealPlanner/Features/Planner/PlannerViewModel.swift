@@ -62,12 +62,25 @@ final class PlannerViewModel: BaseViewModel<Void> {
                 UserDefaults.standard.set(true, forKey: "hasTodayPlan")
                 Logger.log(.info, "Сегодняшний план сохранён")
             }
-
+            
             generatedPlan = cleanedPlan.trimmingCharacters(in: .whitespacesAndNewlines)
             Logger.log(.info, "План сгенерирован, длина: \(response.count)")
+            
+            AnalyticsService.shared.logMealPlanGenerated(
+                daysCount: daysCount,
+                diet: diet,
+                planLengthChars: cleanedPlan.count,
+                profile: profile
+            )
         } catch {
             errorMessage = "Ошибка генерации: \(error.localizedDescription)"
             Logger.log(.error, "Ошибка Groq: \(error)")
+            
+            AnalyticsService.shared.logMealPlanFailed(
+                error: error,
+                daysCount: daysCount,
+                diet: diet
+            )
         }
         
         isGenerating = false
