@@ -3,7 +3,7 @@
 iOS-приложение для умного планирования питания с использованием AI. Генерирует персональные планы питания и рецепты на основе предпочтений пользователя, истории и профиля. Может найти любой рецепт блюда под разные потребности.
 
 ## Demo Video & Screenshots
-https://drive.google.com/drive/folders/1u9b8fQZx7LC7hOazUm7yYtb8r-u8jzjX?usp=drive_link
+https://drive.google.com/drive/folders/1u9b8fQZx7LC7hOazUm7yYtb8r-u8jzjX?usp=sharing
 
 ## Основные требования и особенности проекта
 
